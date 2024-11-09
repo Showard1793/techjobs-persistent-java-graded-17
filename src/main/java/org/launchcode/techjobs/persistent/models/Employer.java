@@ -15,12 +15,12 @@ public class Employer extends AbstractEntity {
     public Employer() {
     }
 
-    // Getter - Location
+    // Getter
     public String getLocation() {
         return location;
     }
 
-    // Setter - Location
+    // Setter
     public void setLocation(String location) {
         this.location = location;
     }
