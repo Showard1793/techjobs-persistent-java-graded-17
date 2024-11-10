@@ -4,46 +4,40 @@ package org.launchcode.techjobs.persistent.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
 @Entity
-public class Job {
+public class Job extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    private int id;
+    //ID and Name inherited from AbstractEntity
 
-    private String name;
-    private String employer;
+    // Change employer field to be of type Employer and add @ManyToOne
+    @ManyToOne
+    private Employer employer;
+
+    @NotNull(message = "Skills are required")
     private String skills;
 
 
     public Job() {
     }
 
-    // Initialize the id and value fields.
-    public Job(String anEmployer, String someSkills) {
-        super();
-        this.employer = anEmployer;
-        this.skills = someSkills;
+    // Constructor
+    public Job(Employer employer, String skills) {
+        this.employer = employer;
+        this.skills = skills;
     }
 
-    // Getters and setters.
-    
-    public String getName() {
-        return name;
-    }
+    // Getters and setters
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmployer() {
+    public Employer getEmployer() {
         return employer;
     }
 
-    public void setEmployer(String employer) {
+    public void setEmployer(Employer employer) {
         this.employer = employer;
     }
 
