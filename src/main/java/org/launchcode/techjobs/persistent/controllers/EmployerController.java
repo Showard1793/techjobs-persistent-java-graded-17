@@ -2,6 +2,7 @@ package org.launchcode.techjobs.persistent.controllers;
 
 import jakarta.validation.Valid;
 import org.launchcode.techjobs.persistent.models.Employer;
+import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +15,24 @@ import java.util.Optional;
 @RequestMapping("employers")
 public class EmployerController {
 
+    // Step 1: Add a private field for EmployerRepository with @Autowired
+    @Autowired
+    private EmployerRepository employerRepository;
+
+    // Step 2: Add index method to list all employers
+    @GetMapping("")
+    public String index(Model model) {
+        model.addAttribute("employers", employerRepository.findAll());
+        return "employers/index";
+    }
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
         return "employers/add";
     }
 
+    // Step 3: Update processAddEmployerForm to save a valid Employer
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
@@ -28,15 +41,17 @@ public class EmployerController {
             return "employers/add";
         }
 
+        employerRepository.save(newEmployer); //Saves valid Employer
         return "redirect:";
     }
 
+    // Step 4: Update displayViewEmployer to fetch an employer by ID
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
 
-        Optional optEmployer = null;
+        Optional<Employer> optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
-            Employer employer = (Employer) optEmployer.get();
+            Employer employer = optEmployer.get();
             model.addAttribute("employer", employer);
             return "employers/view";
         } else {
