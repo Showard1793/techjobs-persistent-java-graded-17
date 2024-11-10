@@ -35,7 +35,11 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index(Model model) {
+        // Fetch all jobs from the repository
+        List<Job> jobs = (List<Job>) jobRepository.findAll();
 
+        // Add the list of jobs to the model
+        model.addAttribute("jobs", jobs);
         model.addAttribute("title", "MyJobs");
 
         return "index";
@@ -93,8 +97,15 @@ public class HomeController {
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
+        // Retrieve the job from the repository
+        Optional<Job> job = jobRepository.findById(jobId);
 
+        if (job.isPresent()) {
+            model.addAttribute("job", job.get());
             return "view";
+        } else {
+            // Handle the case where the job is not found
+            return "redirect:/";
+        }
     }
-
 }
