@@ -16,7 +16,7 @@ public class Job extends AbstractEntity {
     @ManyToOne
     private Employer employer;
 
-    // Update skills to represent a many-to-many relationship with the Skill entity
+    // Update skills to many-to-many relationship and join job and skill tables by their IDs
     @ManyToMany
     @JoinTable(
             name = "job_skills",

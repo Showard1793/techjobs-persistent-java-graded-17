@@ -15,11 +15,11 @@ import java.util.Optional;
 @RequestMapping("skills")
 public class SkillController {
 
-    // Step 1: Add a private field for SkillRepository with @Autowired
+    // Add a private field for SkillRepository with @Autowired
     @Autowired
     private SkillRepository skillRepository;
 
-    // Step 2: Add index method to list all skills
+    // Add index method to list all skills
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("skills", skillRepository.findAll());
@@ -32,7 +32,7 @@ public class SkillController {
         return "skills/add";
     }
 
-    // Step 3: Update processAddSkillForm to save a valid Skill
+    // Update to save a valid Skill
     @PostMapping("add")
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill,
                                       Errors errors, Model model) {
@@ -40,11 +40,11 @@ public class SkillController {
             return "skills/add";
         }
 
-        skillRepository.save(newSkill);
+        skillRepository.save(newSkill); //saves new skill
         return "redirect:";
     }
 
-    // Step 4: Update displayViewSkill to fetch a skill by ID
+    // Update to fetch a skill by ID
     @GetMapping("view/{skillId}")
     public String displayViewSkill(Model model, @PathVariable int skillId) {
         Optional<Skill> optSkill = skillRepository.findById(skillId);

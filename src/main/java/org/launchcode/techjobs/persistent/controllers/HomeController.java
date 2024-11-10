@@ -23,7 +23,7 @@ import java.util.Optional;
 @Controller
 public class HomeController {
 
-    // Step 1: Add employerRepository and skillRepository fields
+    // Add employerRepository, jobRepository, and skillRepository fields
     @Autowired
     private EmployerRepository employerRepository;
 
@@ -35,6 +35,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index(Model model) {
+
         // Fetch all jobs from the repository
         List<Job> jobs = (List<Job>) jobRepository.findAll();
 
@@ -104,7 +105,7 @@ public class HomeController {
             model.addAttribute("job", job.get());
             return "view";
         } else {
-            // Handle the case where the job is not found
+            // redirect to home page if job is not present
             return "redirect:/";
         }
     }
