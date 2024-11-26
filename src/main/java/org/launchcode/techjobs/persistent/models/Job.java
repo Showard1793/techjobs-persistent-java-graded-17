@@ -1,6 +1,5 @@
 package org.launchcode.techjobs.persistent.models;
 
-//test
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
