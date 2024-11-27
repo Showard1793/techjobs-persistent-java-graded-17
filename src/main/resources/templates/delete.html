@@ -1,25 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:text="${title}">Delete Job</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
 
-<h1 th:text="${title}">Delete Job</h1>
+<body class="container body-content">
 
-<form action="/delete" method="post">
-  <ul>
-    <li th:each="job : ${jobs}">
-      <label>
-        <input type="checkbox" name="jobIds" th:value="${job.id}" />
-        <span th:text="${job.name}">Job Title</span>
-      </label>
-    </li>
-  </ul>
+<!-- Header, consistent with view.html -->
+<nav th:replace="~{fragments :: page-header}"></nav>
 
-  <button type="submit">Delete Selected Jobs</button>
+<form action="#" th:action="@{/delete}" method="post">
+
+  <div>
+    <div class="delete-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+
+      <!-- Delete Jobs Section -->
+      <div class="delete-category" style="border: 1px solid #ddd; padding: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); text-align: left;">
+        <h2>Jobs</h2>
+        <div>
+          <label th:each="job : ${jobs}">
+            <input type="checkbox" th:value="${job.id}" th:name="'jobIds'" />
+            <span th:text="${job.name}"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Delete Skills Section -->
+      <div class="delete-category" style="border: 1px solid #ddd; padding: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); text-align: left;">
+        <h2>Skills</h2>
+        <div>
+          <label th:each="skill : ${skills}">
+            <input type="checkbox" th:value="${skill.id}" th:name="'skillIds'" />
+            <span th:text="${skill.description}"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Delete Employers Section -->
+      <div class="delete-category" style="border: 1px solid #ddd; padding: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); text-align: left;">
+        <h2>Employers</h2>
+        <div>
+          <label th:each="employer : ${employers}">
+            <input type="checkbox" th:value="${employer.id}" th:name="'employerIds'" />
+            <span th:text="${employer.name}"></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <button type="submit"
+          style="margin-top: 20px;
+               display: block;
+               background-color: #f0f0f0;
+               color: #333;
+               border: 1px solid #ccc;
+               border-radius: 5px;
+               font-size: 20px;
+               text-align: center;
+               width: 120px;
+               margin-left: auto;
+               margin-right: auto;
+               transition: background-color 0.3s, color 0.3s;"
+          onmouseover="this.style.backgroundColor='#e74c3c'; this.style.color='white';"
+          onmouseout="this.style.backgroundColor='#f0f0f0'; this.style.color='#333';">
+
+    Delete
+  </button>
 </form>
 
 </body>

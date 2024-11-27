@@ -60,3 +60,23 @@ div.job-listing {
     width: 80%;
     background-color: #e4e4e4;
 }
+
+/* Center the button container */
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 20px; /* Optional: adds space above the button */
+}
+
+.btn {
+    padding: 8px 16px; /* Regular size with padding */
+    background-color: #f0f0f0; /* Neutral gray background */
+    color: #333; /* Dark text */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px;
+    font-size: 14px; /* Regular font size */
+}
+
+.btn:hover {
+    background-color: #e0e0e0; /* Lighter gray on hover */
+}

@@ -112,20 +112,45 @@ public class HomeController {
 
     //DELETE JOB FUNCTION
     @GetMapping("delete")
-    public String displayDeleteJobForm(Model model) {
-        // Fetch all jobs from the repository
+    public String displayDeletePage(Model model) {
+        // Fetch all jobs, skills, and employers from the repository
         List<Job> jobs = (List<Job>) jobRepository.findAll();
-        model.addAttribute("jobs", jobs);
-        model.addAttribute("title", "Delete Job");
+        List<Skill> skills = (List<Skill>) skillRepository.findAll();
+        List<Employer> employers = (List<Employer>) employerRepository.findAll();
 
-        return "delete"; // This corresponds to the "delete.html" view
+        // Add these to the model so they can be used in the view
+        model.addAttribute("jobs", jobs);
+        model.addAttribute("skills", skills);
+        model.addAttribute("employers", employers);
+        model.addAttribute("title", "Delete Items");
+
+        return "delete"; // This will render a 'delete.html' template
     }
 
     @PostMapping("delete")
-    public String processDeleteJobForm(@RequestParam List<Integer> jobIds, Model model) {
-        // Delete the selected jobs
-        for (Integer jobId : jobIds) {
-            jobRepository.deleteById(jobId); // Deletes job by id
+    public String processDeleteForm(@RequestParam(required = false) List<Integer> jobIds,
+                                    @RequestParam(required = false) List<Integer> skillIds,
+                                    @RequestParam(required = false) List<Integer> employerIds) {
+
+        // Delete selected jobs
+        if (jobIds != null) {
+            for (Integer jobId : jobIds) {
+                jobRepository.deleteById(jobId);
+            }
+        }
+
+        // Delete selected skills
+        if (skillIds != null) {
+            for (Integer skillId : skillIds) {
+                skillRepository.deleteById(skillId);
+            }
+        }
+
+        // Delete selected employers
+        if (employerIds != null) {
+            for (Integer employerId : employerIds) {
+                employerRepository.deleteById(employerId);
+            }
         }
 
         // Redirect back to the home page after deletion
