@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${title}">Delete Job</title>
+</head>
+<body>
+
+<h1 th:text="${title}">Delete Job</h1>
+
+<form action="/delete" method="post">
+  <ul>
+    <li th:each="job : ${jobs}">
+      <label>
+        <input type="checkbox" name="jobIds" th:value="${job.id}" />
+        <span th:text="${job.name}">Job Title</span>
+      </label>
+    </li>
+  </ul>
+
+  <button type="submit">Delete Selected Jobs</button>
+</form>
+
+</body>
+</html>

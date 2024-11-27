@@ -109,4 +109,26 @@ public class HomeController {
             return "redirect:/";
         }
     }
+
+    //DELETE JOB FUNCTION
+    @GetMapping("delete")
+    public String displayDeleteJobForm(Model model) {
+        // Fetch all jobs from the repository
+        List<Job> jobs = (List<Job>) jobRepository.findAll();
+        model.addAttribute("jobs", jobs);
+        model.addAttribute("title", "Delete Job");
+
+        return "delete"; // This corresponds to the "delete.html" view
+    }
+
+    @PostMapping("delete")
+    public String processDeleteJobForm(@RequestParam List<Integer> jobIds, Model model) {
+        // Delete the selected jobs
+        for (Integer jobId : jobIds) {
+            jobRepository.deleteById(jobId); // Deletes job by id
+        }
+
+        // Redirect back to the home page after deletion
+        return "redirect:/";
+    }
 }

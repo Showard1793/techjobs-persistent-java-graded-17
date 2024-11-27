@@ -23,6 +23,9 @@
                 <li><a th:href="@{/list}">List</a></li>
                 <li><a th:href="@{/search}">Search</a></li>
                 <li><a th:href="@{/add}">Add Jobs</a></li>
+                <!--Delete Job-->
+                <li><a href="/delete">Delete Job</a></li>
+
 
                 <!--Authentication-->
                 <th:block th:if="${session} and ${session.isEmpty()}">
@@ -33,6 +36,8 @@
                 <th:block th:unless="${session} and ${session.isEmpty()}">
                     <li><a th:href="@{/logout}">Log Out</a></li>
                 </th:block>
+
+
             </ul>
         </div>
     </div>
