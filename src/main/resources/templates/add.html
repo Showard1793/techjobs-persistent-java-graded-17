@@ -21,7 +21,8 @@
     </div>
 
     <div class="form-group">
-        <label th:for="*{questTags}">Quest Tags</label>
+        <label th:for="*{questTags}">Quest Tags:</label>
+        <br>
         <th:block th:each="questTag : ${questTags}">
             <input type="checkbox" th:field="*{questTags}" th:value="${questTag.id}" />
             <label th:for="${questTag.id}" th:text="${questTag.name}"></label>
