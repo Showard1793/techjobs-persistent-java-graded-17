@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}">
-</head>
+<head th:replace="~{fragments :: head}"></head>
 <body>
 
 <div th:replace="~{fragments :: page-header}"></div>
 
-<div class="container body-content">
-    <h2>TechJobs</h2>
-    <ul>
-        <li th:each="job : ${jobs}">
-            <a th:href="@{'/view/' + ${job.id}}" th:text="${job.name}"></a>
-        </li>
-    </ul>
+<!-- Display Random Flavor Text -->
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 100px; height: 50vh;">
+    <!-- Text Area -->
+    <textarea rows="4" cols="50"
+              style="resize: none; font-size: 16px; text-align: center;"
+              readonly
+              th:text="${randomFlavorText}"></textarea>
 
+    <!-- JPEG Image -->
+    <img src="/images/images.jpg"
+         alt="Quest Image"
+         style="margin-top: 20px; max-width: 100%; height: auto;" />
+
+    <!-- Button -->
+    <button onclick="location.reload()"
+            style="margin-top: 20px;
+                   background-color: #007BFF;
+                   color: white;
+                   border: none;
+                   border-radius: 5px;
+                   padding: 10px 20px;
+                   font-size: 16px;
+                   cursor: pointer;">
+        Give Me a Quest!
+    </button>
 </div>
 
 </body>

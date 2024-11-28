@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body class="container  body-content">
+<h1>Add QuestTag</h1>
+
+<nav th:replace="~{fragments :: page-header}"></nav>
+
+<form method="post" th:object="${questTag}" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="name">QuestTag Name</label>
+        <input class="form-control" th:field="${questTag.name}" />
+        <span th:errors="${questTag.name}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add QuestTag" />
+</form>
+
+</body>
+</html>

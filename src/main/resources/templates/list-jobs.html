@@ -10,23 +10,20 @@
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-    <table class="job-listing">
-        <tr th:each="job : ${jobs}">
+    <table class="quest-listing">
+        <tr th:each="quest : ${quests}">
             <td>
                 <p>
-                    Job Id:
-                    <a th:href="@{'/view/' + ${job.id}}" th:text="${job.id}"></a>
+                    Quest Id:
+                    <a th:href="@{'/view/' + ${quest.id}}" th:text="${quest.id}"></a>
                 </p>
-                <p th:text="${'Name: ' + job.name}"></p>
+                <p th:text="${'Name: ' + quest.name}"></p>
+                <p th:text="${'Flavor Text: ' + quest.flavorText}"></p>
                 <p>
-                    Employer:
-                    <a th:href="@{'/employers/view/' + ${job.employer.id}}" th:text="${job.employer.name}"></a>
-                </p>
-                <p>
-                    Skills:
-                    <ul th:each="skill : ${job.skills}">
+                    QuestTags:
+                    <ul th:each="questTag : ${quest.questTags}">
                         <li>
-                            <a th:href="@{'/skills/view/' + ${skill.id}}" th:text="${skill.name}"></a>
+                            <a th:href="@{'/questTags/view/' + ${questTag.id}}" th:text="${questTag.name}"></a>
                         </li>
                     </ul>
                 </p>

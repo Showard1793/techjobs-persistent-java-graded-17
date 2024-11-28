@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'QuestTag: ' + questTag.name}">Default Title</h1>
+
+<nav th:replace="~{fragments :: page-header}"></nav>
+
+<div class="quest-listing">
+    <p th:text="${'Name: ' + questTag.name}"></p>
+    <p> Quests:
+        <ul>
+            <li th:each="quest : ${questTag.quests}">
+                <a th:href="@{'/view/' + ${quest.id}}" th:text="${quest.name}"></a>
+            </li>
+        </ul>
+    </p>
+</div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+
+<div th:replace="~{fragments :: page-header}"></div>
+
+<p th:unless="${questTags} and ${questTags.size()}">no quests!</p>
+
+<div class="container body-content">
+    <h2>QuestTags</h2>
+    <ul>
+        <li th:each="questTag : ${questTags}">
+            <a th:href="@{'/questTags/view/' + ${questTag.id}}" th:text="${questTag.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/questTags/add'}">Add QuestTags</a>
+
+</div>
+
+</body>
+</html>

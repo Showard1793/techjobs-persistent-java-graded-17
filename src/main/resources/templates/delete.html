@@ -12,37 +12,27 @@
   <div>
     <div class="delete-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
 
-      <!-- Delete Jobs Section -->
+      <!-- Delete Quests Section -->
       <div class="delete-category" style="border: 1px solid #ddd; padding: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); text-align: left;">
-        <h2>Jobs</h2>
+        <h2>Quests</h2>
         <div>
-          <label th:each="job : ${jobs}">
-            <input type="checkbox" th:value="${job.id}" th:name="'jobIds'" />
-            <span th:text="${job.name}"></span>
+          <label th:each="quest : ${quests}">
+            <input type="checkbox" th:value="${quest.id}" th:name="'questIds'" />
+            <span th:text="${quest.name}"></span>
           </label>
         </div>
       </div>
 
-      <!-- Delete Skills Section -->
+      <!-- Delete QuestTags Section -->
       <div class="delete-category" style="border: 1px solid #ddd; padding: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); text-align: left;">
-        <h2>Skills</h2>
+        <h2>Quest Tags</h2>
         <div>
-          <label th:each="skill : ${skills}">
-            <input type="checkbox" th:value="${skill.id}" th:name="'skillIds'" />
-            <span th:text="${skill.description}"></span>
+          <label th:each="questTag : ${questTags}">
+            <input type="checkbox" th:value="${questTag.id}" th:name="'questTagIds'" />
+            <span th:text="${questTag.name}"></span>
           </label>
         </div>
       </div>
-
-      <!-- Delete Employers Section -->
-      <div class="delete-category" style="border: 1px solid #ddd; padding: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); text-align: left;">
-        <h2>Employers</h2>
-        <div>
-          <label th:each="employer : ${employers}">
-            <input type="checkbox" th:value="${employer.id}" th:name="'employerIds'" />
-            <span th:text="${employer.name}"></span>
-          </label>
-        </div>
       </div>
 
     </div>

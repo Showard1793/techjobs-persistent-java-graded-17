@@ -2,7 +2,7 @@ name: Java CI
 
 on: [push]
 
-jobs:
+quests:
   build:
     runs-on: ubuntu-latest
 
