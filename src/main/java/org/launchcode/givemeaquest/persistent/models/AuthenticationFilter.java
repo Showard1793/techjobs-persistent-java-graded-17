@@ -24,7 +24,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     @Override

@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
+
+<head th:fragment="head">
+
+  <!-- Bootstrap stylesheets and script -->
+  <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+  <link th:href="@{/css/quests.css}" rel="stylesheet" />
+  <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
 </head>
+
 <body>
 
-<div th:replace="fragments :: page-header"></div>
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- Only show Register and Log In links if the session is empty -->
+        <th:block th:if="${session == null or session.isEmpty()}">
+          <li><a th:href="@{/register}">Register</a></li>
+          <li><a th:href="@{/login}">Log In</a></li>
+        </th:block>
+
+        <!-- Show other links when the session exists (user is logged in) -->
+        <th:block th:unless="${session == null or session.isEmpty()}">
+          <li><a th:href="@{/add}">Add Quests</a></li>
+          <li><a th:href="@{/delete}">Delete</a></li>
+          <li><a th:href="@{/logout}">Log Out</a></li>
+        </th:block>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
 
 <div class="container body-content">
   <h2>Register</h2>
